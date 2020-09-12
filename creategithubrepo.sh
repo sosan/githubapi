@@ -34,6 +34,9 @@ if [ "$2" != "" ] ; then
 	TEMPLATEREPO="${ARRAY[4]}"
 fi
 
+# https://developer.github.com/changes/2020-02-14-deprecating-password-auth/
+# curl -H 'Authorization: token my_access_token' https://api.github.com/user/repos
+
 curl -X POST -H "Accept: application/vnd.github.baptiste-preview+json" https://api.github.com/repos/"$TEMPLATEOWNER"/"$TEMPLATEREPO"/generate  -u "$USUARIOGITHUB":"$PASSWORDGITHUB" -d "{\"name\": \""$REPONAME"\"}"
 
 git clone https://github.com/"$USUARIOGITHUB"/"$REPONAME".git
